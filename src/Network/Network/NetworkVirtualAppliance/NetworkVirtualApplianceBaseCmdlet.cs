@@ -13,13 +13,10 @@
 // ----------------------------------------------------------------------------------
 
 
+using System.Net;
 using Microsoft.Azure.Commands.Network.Models;
 using Microsoft.Azure.Commands.ResourceManager.Common.Tags;
 using Microsoft.Azure.Management.Network;
-using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Text;
 using Microsoft.Azure.Management.Network.Models;
 
 namespace Microsoft.Azure.Commands.Network
@@ -55,6 +52,7 @@ namespace Microsoft.Azure.Commands.Network
         public PSNetworkVirtualAppliance GetNetworkVirtualAppliance(string resourceGroupName, string name, string expandResource = null)
         {
             var nva = this.NetworkVirtualAppliancesClient.Get(resourceGroupName, name, expandResource);
+
             var psNva= NetworkResourceManagerProfile.Mapper.Map<PSNetworkVirtualAppliance>(nva);
             psNva.ResourceGroupName = resourceGroupName;
             psNva.Tag =
